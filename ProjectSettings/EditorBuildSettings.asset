@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Breathing Exercises.unity
+    guid: fdad9ce9bd8cff1479bda31374b8588e
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9691a8f384b4eb24f9b77293a35d9678, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 879cdb813a37d4945a60553abde6358d, type: 2}
