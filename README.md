@@ -7,3 +7,4 @@ Breathing exercise skybox provided by Avionx (Unity Asset Store - Skybox Series 
 Black Rock Material From FreePBR: https://freepbr.com/materials/black-rock-pbr-material/
 Blizzard Ambience from cobratronik on Pixabay: https://pixabay.com/sound-effects/search/blizzard/
 Meadow ambience by "be a hero not a patriot" on Pixabay: https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=16661
+Flower Model by JayDesigns3D on Sketchfab: https://sketchfab.com/3d-models/low-poly-flower-85eaccf4c5de42c993c77910b4d4baf9
