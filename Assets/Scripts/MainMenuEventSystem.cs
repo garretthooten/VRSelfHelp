@@ -17,18 +17,40 @@ public class MainMenuEventSystem : MonoBehaviour
     public List<string> quotes;
     public List<string> quoteAuthors;
 
+    //  main menu text preview objects
     public Text quoteText;
+    public Text goalPreview0;
+    public Text goalPreview1;
+
     public GameObject emotionContinueButton;
 
     //  in inspector, set currentPage to desired default page
     public GameObject currentPage;
     private int selectedEmotions = 0;
     public Text selectEmotionsText;
+
+    [SerializeField] private GoalHandler goalHandler;
     
     // Start is called before the first frame update
     void Start()
     {
         loadQuotes();
+        if(goalHandler.goals.Count >= 1)
+        {
+            goalPreview0.text = goalHandler.goals[0].getGoalText();
+        }
+        else
+        {
+            goalPreview0.text = "";
+        }
+        if(goalHandler.goals.Count >= 2)
+        {
+            goalPreview1.text = goalHandler.goals[1].getGoalText();
+        }
+        else
+        {
+            goalPreview1.text = "";
+        }
     }
 
     // Update is called once per frame

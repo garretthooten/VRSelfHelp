@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GoalListItem : MonoBehaviour
 {
+    public Goal myGoal;
     public static int completed = 0;
     public string goalString;
     static public Text completedDisplay;

@@ -38,6 +38,15 @@ public class Goal : MonoBehaviour
     {
         return goalText + ": " + completeStatus;
     }
+
+    public static bool operator== (Goal obj1, Goal obj2)
+    {
+        return (obj1.getGoalText() == obj2.getGoalText());
+    }
+    public static bool operator!= (Goal obj1, Goal obj2)
+    {
+        return (obj1.getGoalText() != obj2.getGoalText());
+    }
 }
 
 public class GoalHandler : MonoBehaviour
@@ -47,8 +56,9 @@ public class GoalHandler : MonoBehaviour
     public List<Goal> goals;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         goalFilePath = Path.Combine(Application.persistentDataPath, "goals.txt");
         loadGoalsToList(goalFilePath);
     }
@@ -133,6 +143,7 @@ public class GoalHandler : MonoBehaviour
     //  overwrites file with current goal list
     public void writeGoalsToFile(string filePath)
     {
+        Debug.Log("Writing goals to file: " + printGoals());
         StreamWriter sw = new StreamWriter(filePath);
         foreach(Goal g in goals)
         {
@@ -142,6 +153,16 @@ public class GoalHandler : MonoBehaviour
             sw.WriteLine(goalStatus);
         }
         sw.Close();
+    }
+
+    public string printGoals()
+    {
+        string result = "";
+        foreach(Goal g in goals)
+        {
+            result = result + g.getGoalText() + ", ";
+        }
+        return result;
     }
 
 }
