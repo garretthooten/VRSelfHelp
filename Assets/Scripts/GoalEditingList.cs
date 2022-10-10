@@ -49,7 +49,7 @@ public class GoalEditingList : MonoBehaviour
         int index = goalHandler.goals.FindIndex(g => g.getGoalText() == goal.getGoalText());
         Debug.Log("Index of goal in list: " + index);
         goalHandler.goals.RemoveAt(index);
-        Destroy(listItem);
         Debug.Log("Goals list after removing " + goal.getGoalText() + ": " + goalHandler.printGoals());
+        Destroy(listItem);
     }
 }

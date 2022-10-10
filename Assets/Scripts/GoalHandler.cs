@@ -58,7 +58,7 @@ public class GoalHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         goalFilePath = Path.Combine(Application.persistentDataPath, "goals.txt");
         loadGoalsToList(goalFilePath);
     }
