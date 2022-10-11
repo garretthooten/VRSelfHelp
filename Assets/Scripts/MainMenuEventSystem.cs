@@ -30,6 +30,8 @@ public class MainMenuEventSystem : MonoBehaviour
     public Text selectEmotionsText;
 
     [SerializeField] private GoalHandler goalHandler;
+
+    public FadeScreen fadeScreen;
     
     // Start is called before the first frame update
     void Start()
@@ -77,6 +79,14 @@ public class MainMenuEventSystem : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
+        //SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadLevelCoroutine(levelName));
+    }
+
+    public IEnumerator LoadLevelCoroutine(string levelName)
+    {
+        fadeScreen.FadeOut();
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(levelName);
     }
 

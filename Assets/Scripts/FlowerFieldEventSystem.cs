@@ -22,6 +22,8 @@ public class FlowerFieldEventSystem : MonoBehaviour
     [SerializeField] private int completedCount = 0;
     [SerializeField] private int flowersGrown = 0;
     private List<bool> flowerSpawned = new List<bool> {false, false, false, false};
+
+    public FadeScreen fadeScreen;
     
     
     // Start is called before the first frame update
@@ -147,8 +149,15 @@ public class FlowerFieldEventSystem : MonoBehaviour
     //  Takes the user back to the main menu.
     public void returnToHome()
     {
-        SceneManager.LoadScene("Main Menu");
+        //SceneManager.LoadScene("Main Menu");
+        StartCoroutine(LoadLevelCoroutine("Main Menu"));
     }
 
-    
+    public IEnumerator LoadLevelCoroutine(string levelName)
+    {
+        fadeScreen.FadeOut();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(levelName);
+    }
+
 }

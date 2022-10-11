@@ -30,6 +30,8 @@ public class BreathingExercise : MonoBehaviour
     public Dropdown timeDropdown;
     //  Legacy Menu (Must be enabled for exercise -- disable otherwise)
     public GameObject legacyMenu;
+
+    public FadeScreen fadeScreen;
     
     // Start is called before the first frame update
     void Start()
@@ -173,7 +175,15 @@ public class BreathingExercise : MonoBehaviour
 
     public void returnToHome()
     {
-        SceneManager.LoadScene("Main Menu");
+        //SceneManager.LoadScene("Main Menu");
+        StartCoroutine(LoadLevelCoroutine("Main Menu"));
+    }
+
+    public IEnumerator LoadLevelCoroutine(string levelName)
+    {
+        fadeScreen.FadeOut();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(levelName);
     }
 
     //  Method to begin the exercise for the beginButton
