@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
+
+public class VRRenderScale : MonoBehaviour {
+    void Start () {
+        if(Application.platform == RuntimePlatform.Android)
+            XRSettings.eyeTextureResolutionScale = 2.5f;
+    }
+}
 
 public class MainMenuEventSystem : MonoBehaviour
 {

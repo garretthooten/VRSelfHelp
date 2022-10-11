@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5920053, g: 0.6926496, b: 0.7959321, a: 1}
+  m_IndirectSpecularColor: {r: 0.58989257, g: 0.69057834, b: 0.79568565, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3071,7 +3071,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dbcb6455526ea0941bd3d09c7e3489db, type: 2}
+  - {fileID: 2100000, guid: c8bfd1cfda4aa4a48ad75d920a9948c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3948,6 +3948,16 @@ MonoBehaviour:
   mindfulPhrases:
   - Focus on your breaths and how they feel in your lungs.
   - Release your stresses with each exhale.
+  - Take this time to focus on yourself.
+  - Nothing can bother you right now.
+  - Forget the stresses of the world.
+  - You are strong enough.
+  - You are loved.
+  - You can power through your problems.
+  - Everything will be okay.
+  - You can't be afraid to take care of yourself.
+  - Take deep breaths to relax.
+  - Step away from your distractions.
   mainMenu: {fileID: 1285748170}
   beginButton: {fileID: 1581091818}
   timeDropdown: {fileID: 457405702}
