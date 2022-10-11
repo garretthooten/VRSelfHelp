@@ -7,10 +7,16 @@ using UnityEngine.UI;
 public class GoalEditingList : MonoBehaviour
 {
     [SerializeField] private GoalHandler goalHandler;
+    public GameObject keyboard;
+    public Text goalInputText;
+
+    public GameObject itemTemplate;
+    public GameObject savedTemplate;
     
     // Start is called before the first frame update
     void Start()
     {
+        GameObject itemTemplate = transform.GetChild(0).gameObject;
         CreateGoalListItems();
     }
 
@@ -24,7 +30,7 @@ public class GoalEditingList : MonoBehaviour
     void CreateGoalListItems()
     {
         //  Find sample goal display in scene and store it to create other objects from
-        GameObject itemTemplate = transform.GetChild(0).gameObject;
+        //GameObject itemTemplate = transform.GetChild(0).gameObject;
         GameObject listItem;
         //  For each goal in the goalhandler...
         foreach(Goal g in goalHandler.goals)
@@ -38,6 +44,7 @@ public class GoalEditingList : MonoBehaviour
             Goal tempGoal = g;
             //  Create new listener for delete button onClick to remove the item display and the goal from the goalhandler... 
             listItem.transform.GetComponentInChildren<Button>().onClick.AddListener(() => RemoveGoalFromList(tempItem, tempGoal));
+            savedTemplate = listItem;
         }
         Destroy(itemTemplate);
     }
@@ -51,5 +58,26 @@ public class GoalEditingList : MonoBehaviour
         goalHandler.goals.RemoveAt(index);
         Debug.Log("Goals list after removing " + goal.getGoalText() + ": " + goalHandler.printGoals());
         Destroy(listItem);
+    }
+
+    public void GoalAddButtonPressed()
+    {
+        keyboard.SetActive(true);
+    }
+
+    public void GoalEnterButtonPressed()
+    {
+        string newGoalText = goalInputText.text;
+        Goal tempGoal = new Goal(newGoalText, false);
+        goalHandler.goals.Add(tempGoal);
+        
+        GameObject listItem = Instantiate(savedTemplate, transform);
+        listItem.transform.GetComponentInChildren<Text>().text = newGoalText;
+        //  Store display item and goal as temp variables for the onClick listener...
+        GameObject tempItem = listItem;
+        //  Create new listener for delete button onClick to remove the item display and the goal from the goalhandler... 
+        listItem.transform.GetComponentInChildren<Button>().onClick.AddListener(() => RemoveGoalFromList(tempItem, tempGoal));
+        goalInputText.text = "";
+        keyboard.SetActive(false);
     }
 }
