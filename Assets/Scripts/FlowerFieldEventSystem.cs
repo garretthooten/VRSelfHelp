@@ -62,7 +62,7 @@ public class FlowerFieldEventSystem : MonoBehaviour
             if(vase.activeSelf)
             {
                 Debug.Log("Vase is active");
-                vaseAnim.Play("vaseHolderShrink");
+                //vaseAnim.Play("vaseHolderShrink");
             }
             defaultPage.SetActive(true);
             goalsPage.SetActive(false);

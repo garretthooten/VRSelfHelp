@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using VRKeys;
 
 public class VRRenderScale : MonoBehaviour {
     void Start () {
@@ -40,6 +41,8 @@ public class MainMenuEventSystem : MonoBehaviour
     [SerializeField] private GoalHandler goalHandler;
 
     public FadeScreen fadeScreen;
+
+    public Keyboard keyboard;
     
     // Start is called before the first frame update
     void Start()
@@ -78,6 +81,12 @@ public class MainMenuEventSystem : MonoBehaviour
             currentPage.SetActive(false);
             pages[index].SetActive(true);
             currentPage = pages[index];
+
+            if(!keyboard.disabled)
+            {
+                keyboard.SetText("");
+                keyboard.Disable();
+            }
         }
         else
         {

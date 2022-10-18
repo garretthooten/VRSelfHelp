@@ -3,21 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using VRKeys;
+using TMPro;
 
 public class GoalEditingList : MonoBehaviour
 {
     [SerializeField] private GoalHandler goalHandler;
-    public GameObject keyboard;
-    public Text goalInputText;
+    public TMP_InputField goalInputText;
 
     public GameObject itemTemplate;
     public GameObject savedTemplate;
+
+    public Keyboard kboard;
     
     // Start is called before the first frame update
     void Start()
     {
         GameObject itemTemplate = transform.GetChild(0).gameObject;
         CreateGoalListItems();
+        kboard.Disable();
     }
 
     // Update is called once per frame
@@ -62,12 +66,13 @@ public class GoalEditingList : MonoBehaviour
 
     public void GoalAddButtonPressed()
     {
-        keyboard.SetActive(true);
+        if(kboard.disabled)
+            kboard.Enable();
     }
 
     public void GoalEnterButtonPressed()
     {
-        string newGoalText = goalInputText.text;
+        string newGoalText = kboard.text;
         Goal tempGoal = new Goal(newGoalText, false);
         goalHandler.goals.Add(tempGoal);
         
@@ -77,7 +82,12 @@ public class GoalEditingList : MonoBehaviour
         GameObject tempItem = listItem;
         //  Create new listener for delete button onClick to remove the item display and the goal from the goalhandler... 
         listItem.transform.GetComponentInChildren<Button>().onClick.AddListener(() => RemoveGoalFromList(tempItem, tempGoal));
-        goalInputText.text = "";
-        keyboard.SetActive(false);
+        DisableKeyboard();
+    }
+
+    public void DisableKeyboard()
+    {
+        kboard.SetText("");
+        kboard.Disable();
     }
 }
