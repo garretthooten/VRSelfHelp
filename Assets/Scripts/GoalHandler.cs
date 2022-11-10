@@ -54,6 +54,8 @@ public class GoalHandler : MonoBehaviour
     string fileName = "testfile.txt";
     string goalFilePath = "";
     public List<Goal> goals;
+
+    public bool mainMenuResetSwitch = false;
     
     // Start is called before the first frame update
     void Awake()
@@ -71,7 +73,15 @@ public class GoalHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        writeGoalsToFile(goalFilePath);
+        if(!mainMenuResetSwitch)
+        {
+            Debug.Log("Reset switch not enabled, saving goals");
+            writeGoalsToFile(goalFilePath);
+        }
+        else
+        {
+            Debug.Log("reset switch enabled, not saving goals");
+        }
         Debug.Log("Destroying GoalHandler");
     }
 

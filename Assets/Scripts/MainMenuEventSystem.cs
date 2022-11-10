@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -43,10 +44,23 @@ public class MainMenuEventSystem : MonoBehaviour
     public FadeScreen fadeScreen;
 
     public Keyboard keyboard;
+
+    private bool hasBeenBooted = false;
     
     // Start is called before the first frame update
     void Start()
     {
+        hasBeenBooted = GetBootedStatus();
+        if(hasBeenBooted)
+        {
+            Debug.Log("Application has been booted, skipping mood survey");
+            SwitchPage("mainmenu");
+        }
+        else
+        {
+            Debug.Log("Application has not been booted, performing mood survey");
+        }
+
         loadQuotes();
         if(goalHandler.goals.Count >= 1)
         {
@@ -154,5 +168,39 @@ public class MainMenuEventSystem : MonoBehaviour
         int num = UnityEngine.Random.Range(0, quotes.Count);
         string generatedQuote = "\"" + quotes[num] + "\" - " + quoteAuthors[num];
         quoteText.text = generatedQuote;
+    }
+
+    private bool GetBootedStatus()
+    {
+        string bootStatusFilePath = Path.Combine(Application.persistentDataPath, "bootStatus.txt");
+        if(File.Exists(bootStatusFilePath))
+        {
+            Debug.Log("Boot status file found!");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("Boot status file not present! Creating file...");
+            StreamWriter sw = new StreamWriter(bootStatusFilePath);
+            sw.WriteLine("application has been booted");
+            sw.Close();
+            return false;
+        }
+    }
+
+    public void ResetApplication()
+    {
+        File.Delete(Path.Combine(Application.persistentDataPath, "bootStatus.txt"));
+        File.Delete(Path.Combine(Application.persistentDataPath, "goals.txt"));
+        goalHandler.mainMenuResetSwitch = true;
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void ResetApplicationAndQuit()
+    {
+        File.Delete(Path.Combine(Application.persistentDataPath, "bootStatus.txt"));
+        File.Delete(Path.Combine(Application.persistentDataPath, "goals.txt"));
+        goalHandler.mainMenuResetSwitch = true;
+        Application.Quit();
     }
 }
